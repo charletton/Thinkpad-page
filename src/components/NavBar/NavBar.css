@@ -1,0 +1,68 @@
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 8vh;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light, .dark {
+  background-color: #ffffff;
+  transition: background-color 0.5s;
+}
+
+.light .NavBar a {
+  color: black;
+}
+
+.dark .NavBar a {
+  color: white;
+}
+
+.dark {
+  background-color: black;
+}
+
+.dark .NavBar {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  width: 100px;
+  cursor: pointer;
+  height: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+ul li {
+  margin-right: 20px;
+}
+
+ul li:last-child {
+  margin-right: 0;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+}
+
+.mode-icon {
+  cursor: pointer;
+  width: 24px;
+  height: auto;
+  margin-left: 20px;
+}
+
+.img-normalizada{
+	width: 95px;
+	height: 80px;
+	object-fit: cover;
+}
