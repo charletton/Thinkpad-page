@@ -9,7 +9,7 @@ function CartWidget({ itemsCount }) {
   }, [itemsCount]);
 
   return (
-    <div>
+    <div >
       {count}
     </div>
   );

@@ -7,12 +7,16 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.NavBar a {
+  text-decoration: none;
+}
+
 .light, .dark {
   background-color: #ffffff;
   transition: background-color 0.5s;
 }
 
-.light .NavBar a {
+.light .NavBar {
   color: black;
 }
 
@@ -25,7 +29,7 @@
 }
 
 .dark .NavBar {
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .logo {

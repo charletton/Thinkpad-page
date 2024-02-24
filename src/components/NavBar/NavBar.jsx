@@ -1,12 +1,10 @@
 import './NavBar.css';
 import CartWidget from '../CartWidget/CartWidget.jsx'
-import logo_black from '../../assets/logo-black.png';
-import logo_white from '../../assets/logo-white.png';
+import logo from '../../assets/logo.png';
 import PropTypes from 'prop-types';
 import sun from '../../assets/sun.png'
 import moon from '../../assets/moon.svg'
-import cart_light from '../../assets/cart-light.png'
-import cart_dark from '../../assets/cart-dark.png'
+import cart from '../../assets/cart-light.png'
 
 const NavBar = ({ theme, setTheme, itemsCount }) => {
   const toggleMode = () => {
@@ -15,7 +13,9 @@ const NavBar = ({ theme, setTheme, itemsCount }) => {
 
   return (
     <div className={`NavBar ${theme}`}>
-      <img alt="Logo" src={theme === 'light' ? logo_white : logo_black} className="logo img-normalizada"/>
+      <img alt="Logo"
+           src={logo}
+           className={theme === 'light' ? 'logo ' : 'logo invertir-color'}/>
       <ul>
         <li>
           <a href="#">Home</a>
@@ -30,10 +30,14 @@ const NavBar = ({ theme, setTheme, itemsCount }) => {
 
       <div className='icons-container'>
 
-        <CartWidget itemsCount={itemsCount} /> {/* Pasa el estado del contador como prop al CartWidget */}
+        <div className={theme === 'light' ? '' : 'invertir-color'} >
+          <CartWidget
+            itemsCount={itemsCount}/>
+        </div>
 
         <img alt="cart"
-             src={theme === 'light' ? cart_light : cart_dark}
+             src={cart}
+             className={theme === 'light' ? '' : 'invertir-color'}
              width='20' />
 
         <img alt="Night/Light mode"
