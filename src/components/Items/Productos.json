@@ -1,0 +1,28 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Thinkpad-x60",
+      "price": 150,
+      "img":"https://www.manual.ar/thumbs/products/l/1308092-lenovo-thinkpad-x60.webp"
+    },
+    {
+      "id": 2,
+      "nombre": "Thinkpad-T61",
+      "price": 2000,
+      "img":"https://thinkpads.com/t61/pix/T61_small.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Thinkpad-X200",
+      "price": 2000,
+      "img":"https://i.blogs.es/f57375/lenovo-thinkpad-x200/650_1200.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "Thinkpad-X1-Carbon",
+      "price": 2500,
+      "img":"https://www.lenovo.com/medias/?context=bWFzdGVyfHJvb3R8MjQ1NzE1fGltYWdlL3BuZ3xoOGMvaDRmLzE2OTM2MTU2MzMyMDYyLnBuZ3w3NGZlYzZhZDgxZTUwNjQ0MGFkYjg3YTIwOTFiOGM3NmY3MGQ1MGI0OTMzYTFlMGUwOGU0OWI2MmRjZDZjYjQ2"
+    }
+  ]
+}

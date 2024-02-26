@@ -1,7 +1,8 @@
 import /*React,*/ { useState } from 'react'
 import NavBar from './NavBar/NavBar.jsx'
 import Counter from './Counter/Counter.jsx'
-// import Items from './Item/Item.jsx' //    
+import ComponenteUseEffect from './ComponenteUseEffect/ComponenteUseEffect.jsx'
+import Items from './Items/Items.jsx'    
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -9,10 +10,13 @@ function App() {
 
   return (
     <div className={`app ${theme}`}>
-      <NavBar theme={theme} setTheme={setTheme} itemsCount={itemsCount} /> {/* Pasa el estado del contador como prop al NavBar */}
-      <Counter setItemsCount={setItemsCount} /> {/* Pasa la función para actualizar el contador como prop al Counter */}
+      <NavBar theme={theme} setTheme={setTheme} itemsCount={itemsCount} /> 
+      <ComponenteUseEffect/>
+      <Counter setItemsCount={setItemsCount} />
+      <Items/>
     </div>
   )
 }
 
 export default App
+ 
