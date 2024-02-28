@@ -2,7 +2,7 @@ import /*React,*/ { useState } from 'react'
 import NavBar from './NavBar/NavBar.jsx'
 import Counter from './Counter/Counter.jsx'
 import ComponenteUseEffect from './ComponenteUseEffect/ComponenteUseEffect.jsx'
-import Items from './Items/Items.jsx'    
+import ItemsList from './ItemsList/ItemsList.jsx'    
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -13,7 +13,7 @@ function App() {
       <NavBar theme={theme} setTheme={setTheme} itemsCount={itemsCount} /> 
       <ComponenteUseEffect/>
       <Counter setItemsCount={setItemsCount} />
-      <Items/>
+      <ItemsList/>
     </div>
   )
 }

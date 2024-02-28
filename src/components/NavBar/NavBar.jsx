@@ -1,4 +1,5 @@
 import './NavBar.css';
+import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx'
 import CartWidget from '../CartWidget/CartWidget.jsx'
 import logo from '../../assets/logo.png';
 import PropTypes from 'prop-types';
@@ -16,20 +17,10 @@ const NavBar = ({ theme, setTheme, itemsCount }) => {
       <img alt="Logo"
            src={logo}
            className={theme === 'light' ? 'logo ' : 'logo invertir-color'}/>
-      <ul>
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Products</a>
-        </li>
-      </ul>
+
+      <ItemListContainer/>
 
       <div className='icons-container'>
-
         <div className={theme === 'light' ? '' : 'invertir-color'} >
           <CartWidget
             itemsCount={itemsCount}/>
