@@ -1,21 +1,28 @@
 import './Counter.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function Counter({ setItemsCount }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    // Recupera el valor del contador almacenado en localStorage, si existe, o establece el valor inicial en 0
+    const storedCount = localStorage.getItem('itemsCount');
+    return storedCount ? parseInt(storedCount) : 0;
+  });
+
+  useEffect(() => {
+    // Guarda el valor actual del contador en localStorage cada vez que cambie
+    localStorage.setItem('itemsCount', count.toString());
+    // Actualiza el contador en el componente padre
+    setItemsCount(count);
+  }, [count, setItemsCount]);
 
   const increment = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    setItemsCount(newCount); 
+    setCount(prevCount => prevCount + 1);
   };
 
   const decrement = () => {
     if (count > 0) {
-      const newCount = count - 1;
-      setCount(newCount);
-      setItemsCount(newCount);
+      setCount(prevCount => prevCount - 1);
     }
   };
 

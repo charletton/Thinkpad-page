@@ -10,3 +10,7 @@
 .invertir-color {
   filter: invert(100%);
 }
+
+.Main-body {
+  min-height: 100vh;
+}
