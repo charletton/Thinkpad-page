@@ -1,0 +1,24 @@
+.logos {
+  overflow: hidden;
+  padding: 60px 0;
+  position: relative;
+}
+
+.logos-slide {
+  display: flex; /* Utilizamos flexbox para alinear los logos */
+  animation: slide 35s infinite linear; /* Aplicamos la animación de deslizamiento */
+}
+
+.logos-slide img {
+  height: 50px;
+  margin: 0 40px;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

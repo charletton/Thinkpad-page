@@ -2,6 +2,7 @@ import /*React,*/ { useState } from 'react'
 import NavBar from '../components/NavBar/NavBar.jsx'
 import Footer from '../components/Footer/Footer.jsx'
 import { useTheme } from '../contexts/ThemeContext.jsx'
+import Carousel from '../components/Carousel/Carousel.jsx'
 
 const Home = () => {
   const { theme, setTheme } = useTheme(); // Usar el contexto de tema en lugar de manejar el estado aquí
@@ -21,7 +22,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <h1 className='text-white'>Hola</h1>
+      <Carousel theme={theme}/>  
+
       <Footer theme={theme} setTheme={setTheme}/> 
     </div>
 
