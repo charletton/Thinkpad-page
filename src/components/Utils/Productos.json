@@ -5,6 +5,7 @@
       "nombre": "Thinkpad-x60",
       "price": 150,
       "img":"https://www.notebookcheck.org/fileadmin/_processed_/csm_thinkpad_x60s_gesamt2_01_324666098d.jpg",
+      "img_presentacion":"https://upload.wikimedia.org/wikipedia/commons/c/c1/ThinkPad_X60_Series_with_Libreboot.jpg",
       "categ":"old",
       "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum ante eu magna ullamcorper, vel vehicula justo venenatis. Nam auctor fermentum urna nec aliquet. Quisque auctor, velit eu gravida molestie, velit lacus viverra eros, ac volutpat eros justo sit amet mauris."
     },
@@ -13,6 +14,7 @@
       "nombre": "Thinkpad-T61",
       "price": 2000,
       "img":"https://thinkpads.com/t61/pix/T61_small.jpg",
+      "img_presentacion":"https://i.pinimg.com/474x/dd/c2/97/ddc297a9b60d203eb164d4fcc7f913cf.jpg",
       "categ":"old",
       "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum ante eu magna ullamcorper, vel vehicula justo venenatis. Nam auctor fermentum urna nec aliquet. Quisque auctor, velit eu gravida molestie, velit lacus viverra eros, ac volutpat eros justo sit amet mauris."
     },
@@ -21,6 +23,7 @@
       "nombre": "Thinkpad-X200",
       "price": 2000,
       "img":"https://i.blogs.es/f57375/lenovo-thinkpad-x200/650_1200.jpg",
+      "img_presentacion":"https://images.tokopedia.net/img/cache/700/VqbcmM/2021/8/14/46b876a7-7b9c-427c-b2e1-c190d4864e03.jpg",
       "categ":"old",
       "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum ante eu magna ullamcorper, vel vehicula justo venenatis. Nam auctor fermentum urna nec aliquet. Quisque auctor, velit eu gravida molestie, velit lacus viverra eros, ac volutpat eros justo sit amet mauris."
     },
@@ -29,6 +32,7 @@
       "nombre": "Thinkpad-X1-Carbon",
       "price": 2500,
       "img":"https://www.lenovo.com/medias/?context=bWFzdGVyfHJvb3R8MjQ1NzE1fGltYWdlL3BuZ3xoOGMvaDRmLzE2OTM2MTU2MzMyMDYyLnBuZ3w3NGZlYzZhZDgxZTUwNjQ0MGFkYjg3YTIwOTFiOGM3NmY3MGQ1MGI0OTMzYTFlMGUwOGU0OWI2MmRjZDZjYjQ2",
+      "img_presentacion":"https://s1.eestatic.com/2020/08/19/omicrono/hardware/hardware_514210393_158024451_1706x960.jpg",
       "categ":"new",
       "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum ante eu magna ullamcorper, vel vehicula justo venenatis. Nam auctor fermentum urna nec aliquet. Quisque auctor, velit eu gravida molestie, velit lacus viverra eros, ac volutpat eros justo sit amet mauris."
     },
@@ -37,6 +41,7 @@
       "nombre": "Thinkpad-E16",
       "price": 200,
       "img":"https://p1-ofp.static.pub/fes/cms/2023/05/23/0p3uegq3aidesuapqdx9ledi4ynhje882157.png",
+      "img_presentacion":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYJ2moPLj8Kewowgw_FE9c23BPAxFqTFWkfONMfGP84w&s",
       "categ":"new",
       "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum ante eu magna ullamcorper, vel vehicula justo venenatis. Nam auctor fermentum urna nec aliquet. Quisque auctor, velit eu gravida molestie, velit lacus viverra eros, ac volutpat eros justo sit amet mauris."
     }

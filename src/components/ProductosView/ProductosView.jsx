@@ -67,7 +67,6 @@ const ProductosView = () => {
             </div>
             <div className="px-6 pt-0 pb-2">
               <div>
-                <input type="number" min="1" />
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
                 onClick={() => onAdd(producto)}>Agregar al carrito</button>
               </div>
