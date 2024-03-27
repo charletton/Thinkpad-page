@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className={`p-4 ${theme}`}>
       <div className="container mx-auto">
-        <p className={`text-center ${theme == 'dark' ? 'text-white' : ''}`}>&copy; 2024 Mi Tienda en Línea. Todos los derechos reservados.</p>
+        <p className={`text-center ${theme == 'dark' ? 'text-white' : ''}`}>&copy; 2024 Thinkpad Store. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

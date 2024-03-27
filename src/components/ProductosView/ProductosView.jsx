@@ -53,11 +53,13 @@ const ProductosView = () => {
       </div>
 
       {/* Render */} 
-      <div className="flex flex-wrap">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {productosFiltrados.map(producto => (
-          <div className={`max-w-sm rounded overflow-hidden shadow-lg ${theme === 'dark' ? 'bg-white' : 'bg-black'} mx-2 mb-4`} key={producto.id}>
+          <div className={`max-w-xs rounded overflow-hidden shadow-lg ${theme === 'dark' ? 'bg-white' : 'bg-black'}`} key={producto.id}>
             <Link to={`/productos/${producto.id}`}>
-              <img className="w-full" src={producto.img} alt={producto.nombre}/>
+              <div className="img-container">
+                <img className="w-full h-auto" src={producto.img} alt={producto.nombre} />
+              </div>
             </Link>
             <div className="px-6 py-4">
               <div className={`font-bold text-xl mb-2 ${theme === 'dark' ? 'text-dark' : 'text-white'}`}>{producto.nombre}</div>
@@ -66,14 +68,13 @@ const ProductosView = () => {
               </p>
             </div>
             <div className="px-6 pt-0 pb-2">
-              <div>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
-                onClick={() => onAdd(producto)}>Agregar al carrito</button>
-              </div>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => onAdd(producto)}>Agregar al carrito</button>
             </div>
           </div>
         ))}
       </div>
+
+
     </>
   );
 };

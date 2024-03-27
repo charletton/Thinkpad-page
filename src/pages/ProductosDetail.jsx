@@ -46,7 +46,7 @@ const ProductosDetail = () => {
             {/* navbar */}
             <NavBar theme={theme} setTheme={setTheme} /> 
             {/* main body */}
-            <div className={`Main-body p-4 w-full h-full ${theme === 'dark' ? 'bg-dark' : 'bg-white'}`}>
+            <div className={`Main-body ${theme === 'dark' ? 'bg-dark' : 'bg-white'}`}>
                 {loading ? (
                     <p>Loading...</p>
                 ) : (

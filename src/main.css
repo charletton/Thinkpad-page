@@ -18,3 +18,15 @@
   margin: 0;
   padding: 0;
 }
+
+.img-container {
+  height: 200px;
+  max-height: 250px; /* Establece la altura máxima */
+  overflow: hidden; /* Oculta cualquier parte de la imagen que exceda la altura máxima */
+}
+
+#index-img {
+  max-height: 700px;
+  object-fit: cover;
+}
+
