@@ -5,13 +5,11 @@ import { useTheme } from "../contexts/ThemeContext";
 import Footer from "../components/Footer/Footer";
 
 const Productos = () => {
-
     const { theme, setTheme } = useTheme(); // Usar el contexto de tema en lugar de manejar el estado aquí
-    const [itemsCount, setItemsCount] = useState(0); // Inicializa el estado del contador en 0
 
     return (
     <div className={`app ${theme}`}>
-      <NavBar theme={theme} setTheme={setTheme} itemsCount={itemsCount} /> 
+      <NavBar theme={theme} setTheme={setTheme}/> 
       <h1 className="text-4xl mt-10 font-bold text-center mt-8 mb-12 text-red-600">Productos!</h1>
       <hr />
 

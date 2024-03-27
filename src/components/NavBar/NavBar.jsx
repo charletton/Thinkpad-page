@@ -28,13 +28,15 @@ const NavBar = ({ itemsCount }) => {
 
       <div className='icons-container'>
         <div className={theme === 'light' ? '' : 'invertir-color'}>
-          <CartWidget itemsCount={itemsCount}/>
+          <CartWidget/>
         </div>
 
+        <Link to="/cart">
         <img alt="cart"
              src={cart}
              className={theme === 'light' ? '' : 'invertir-color'}
              width='20' />
+        </Link>
 
         <img alt="Night/Light mode"
              onClick={() => {toggleMode()}}
@@ -47,7 +49,6 @@ const NavBar = ({ itemsCount }) => {
 NavBar.propTypes = {
   theme: PropTypes.string.isRequired,
   setTheme: PropTypes.func.isRequired,
-  itemsCount: PropTypes.number.isRequired // Asegúrate de definir el tipo de la prop itemsCount
 };
 
 export default NavBar;
