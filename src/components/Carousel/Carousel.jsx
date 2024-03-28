@@ -3,11 +3,11 @@ import th1 from '../../assets/logos/thinkpad.png';
 import ibm1 from '../../assets/logos/ibm.png';
 import ibm2 from '../../assets/logos/ibm-blue.png';
 import lenovo from '../../assets/logos/lenovo.png';
-import { ThemeProvider, useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import './Carousel.css';
 
 const Carousel = () => {
-  const { theme, setTheme } = useTheme(); // Obtén el tema y la función setTheme del contexto
+  const { theme } = useTheme(); // Obtén el tema y la función setTheme del contexto
   const logosRef = useRef(null);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import './NavBar.css';
-import { useTheme } from '../../contexts/ThemeContext'; // Importa el hook useTheme
+import { useTheme } from '../../contexts/ThemeContext'; 
 import { Link } from 'react-router-dom';
 import ItemListContainer from '../ItemListContainer/ItemListContainer';
 import CartWidget from '../CartWidget/CartWidget';
@@ -9,8 +9,9 @@ import sun from '../../assets/sun.png';
 import moon from '../../assets/moon.svg';
 import cart from '../../assets/cart-light.png';
 
-const NavBar = ({ itemsCount }) => {
-  const { theme, setTheme } = useTheme(); // Obtén el tema y la función setTheme del contexto
+const NavBar = ({ }) => {
+  const { theme, setTheme } = useTheme(); 
+  
 
   const toggleMode = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light'); 
@@ -45,10 +46,6 @@ const NavBar = ({ itemsCount }) => {
       </div>
     </div>
   );
-};
-NavBar.propTypes = {
-  theme: PropTypes.string.isRequired,
-  setTheme: PropTypes.func.isRequired,
 };
 
 export default NavBar;

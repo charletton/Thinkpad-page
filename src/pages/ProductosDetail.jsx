@@ -41,10 +41,11 @@ const ProductosDetail = () => {
         getProduct();
     }, [id]);
 
-    return ( 
+    console.log(producto);
+    return (
         <div className={`app ${theme}`}>
             {/* navbar */}
-            <NavBar theme={theme} setTheme={setTheme} /> 
+            <NavBar theme={theme} setTheme={setTheme} />
             {/* main body */}
             <div className={`Main-body ${theme === 'dark' ? 'bg-dark' : 'bg-white'}`}>
                 {loading ? (
@@ -52,14 +53,30 @@ const ProductosDetail = () => {
                 ) : (
                     <>
                         {producto ? (
-                            <div className="Main-body text-white" style={{ backgroundImage: `url(${producto.img_presentacion})` }}>
-                                <div className={`font-bold text-xl mb-2 `}>
-                                <h1>Detalle del Producto</h1>
-                                <p>ID: {producto.id}</p>
-                                <p>Nombre: {producto.nombre}</p>
+                            <div className="Main-body text-white" style={{
+                                backgroundImage: `url(${producto.img_presentacion})`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                height: '100vh',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
+
+                                <div className={`flex items-center mb-8 p-8 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+                                    <div className="flex-shrink-0 w-80 h-60 mr-6">
+                                        <img src={producto.img} alt={producto.nombre} className="w-full h-full object-cover rounded-lg" />
+                                    </div>
+                                    <div className={`flex flex-col justify-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+                                        <h2 className="text-5xl font-semibold mb-4 ">{producto.nombre}</h2>
+                                        <p className="text-lg mb-6">{producto.descripcion}</p>
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md"
+                                            onClick={() => onAdd(producto)}>Agregar al carrito</button>
+                                    </div>
                                 </div>
-                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" 
-                                onClick={() => onAdd(producto)}>Agregar al carrito</button>
+
                             </div>
                         ) : (
                             <p>Producto no encontrado</p>
@@ -67,9 +84,10 @@ const ProductosDetail = () => {
                     </>
                 )}
             </div>
-            <Footer /> 
+            <Footer />
         </div>
     );
+
 }
- 
+
 export default ProductosDetail;

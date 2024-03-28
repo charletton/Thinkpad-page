@@ -29,3 +29,13 @@
   max-height: 700px;
   object-fit: cover;
 }
+
+.text-custom-white {
+  color: white;
+  text-shadow: 0px 0px 10px black;
+}
+
+.text-custom-black {
+  color: black;
+  text-shadow: 0px 0px 10px white;
+}
