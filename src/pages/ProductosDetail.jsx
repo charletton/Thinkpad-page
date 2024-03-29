@@ -1,15 +1,15 @@
-import { React, useContext, useEffect, useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import productos from '../components/Utils/Productos.json';
-import NavBar from "../components/NavBar/NavBar";
 import { useTheme } from '../contexts/ThemeContext.jsx';
+import NavBar from "../components/NavBar/NavBar";
 import Footer from '../components/Footer/Footer';
-import { CartContext } from "../contexts/CartContext.jsx";
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { CartContext } from '../contexts/CartContext.jsx';
 
 const ProductosDetail = () => {
     const { theme, setTheme } = useTheme();
-    const { addCart } = useContext(CartContext)
     const { id } = useParams();
+    const { addCart } = useContext(CartContext);
     const [producto, setProducto] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -19,30 +19,25 @@ const ProductosDetail = () => {
     };
 
     useEffect(() => {
-        const getProduct = async () => {
-            try {
-                if (!productos) {
-                    throw new Error("Lista de productos no disponible.");
-                }
+        const fetchData = async () => {
+            const db = getFirestore();
+            const productosCollection = collection(db, 'productos');
+            const productosSnapshot = await getDocs(productosCollection);
+            const productosData = productosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            const foundProducto = productosData.find(producto => String(producto.id) === id);
 
-                const foundProducto = productos.productos.find(item => item.id === parseInt(id));
-                if (foundProducto) {
-                    setProducto(foundProducto);
-                } else {
-                    throw new Error("Producto no encontrado.");
-                }
-            } catch (error) {
-                console.error("Error fetching details:", error);
-            } finally {
-                setLoading(false);
+            if (foundProducto) {
+                setProducto(foundProducto);
+            } else {
+                console.error('Producto no encontrado');
             }
+            setLoading(false);
         };
 
-        getProduct();
+        fetchData();
     }, [id]);
 
-    console.log(producto);
-    return (
+   return (
         <div className={`app ${theme}`}>
             {/* navbar */}
             <NavBar theme={theme} setTheme={setTheme} />
@@ -86,8 +81,6 @@ const ProductosDetail = () => {
             </div>
             <Footer />
         </div>
-    );
-
-}
+    );};
 
 export default ProductosDetail;

@@ -1,13 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
-import productos from '../Utils/Productos.json';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
+import {  getDocs, collection, getFirestore } from 'firebase/firestore';
 
 const ProductosView = () => {
   const { theme } = useTheme();
+  const [productos, setProductos] = useState([]);
   const [filtro, setFiltro] = useState("");
   const { addCart } = useContext(CartContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const db = getFirestore();
+      const productosCollection = collection(db, 'productos');
+      const productosSnapshot = await getDocs(productosCollection);
+      const productosData = productosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setProductos(productosData);
+    };
+
+    fetchData();
+  }, []);
 
   const onAdd = (item) => {
     addCart(item, 1);
@@ -18,7 +31,7 @@ const ProductosView = () => {
     setFiltro(e.target.value);
   };
 
-  const productosFiltrados = productos.productos.filter(producto => {
+  const productosFiltrados = productos.filter(producto => {
     const nombreCoincide = producto.nombre.toLowerCase().includes(filtro.toLowerCase());
     const categoriaCoincide = producto.categ === filtro.toLowerCase(); // Filtrar por categoría
     return nombreCoincide || categoriaCoincide;
@@ -76,4 +89,3 @@ const ProductosView = () => {
 };
 
 export default ProductosView;
-
