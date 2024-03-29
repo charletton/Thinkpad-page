@@ -6,9 +6,16 @@ import Footer from "../components/Footer/Footer";
 import { useTheme } from "../contexts/ThemeContext";
 
 const Cart = () => {
+  const { addCart } = useContext(CartContext);
   const { cart, clear, removeItem, addItem } = useContext(CartContext);
   const [cartQuantity, setCartQuantity] = useState(0);
   const { theme, setTheme } = useTheme();
+
+  const onAdd = (item) => {
+    addCart(item, 1);
+    console.log('Producto agregado al carrito');
+  };
+
 
   // Actualiza cartQuantity cuando cambia el carrito
   useEffect(() => {
@@ -40,7 +47,7 @@ const Cart = () => {
                 <p>Precio unidad: ${item.item.price}</p>
                 <p>Precio total: ${item.item.price * item.quantity}</p>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md mt-4"
-                  onClick={() => addItem(item.item)}>Agregar otro</button>
+                  onClick={() => onAdd(item.item)}>Agregar otro</button>
                 <button className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md mt-2"
                   onClick={() => removeItem(item.item)}>Quitar del carrito</button>
               </div>
