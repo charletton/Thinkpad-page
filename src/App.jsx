@@ -1,8 +1,11 @@
-import React from 'react';
+//hooks
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+//contextos
 import { ThemeProvider } from './contexts/ThemeContext';
 import { CartProvider } from './contexts/CartContext'; // Importa el CartProvider
 
+//pages
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Productos from './pages/Productos';

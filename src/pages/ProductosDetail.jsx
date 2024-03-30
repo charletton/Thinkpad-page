@@ -3,15 +3,16 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 //componentes
-import NavBar from "../components/NavBar/NavBar";
-import Footer from '../components/Footer/Footer';
+import NavBar from '../components/NavBar/NavBar.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+import Loading from "../components/Loading/Loading.jsx";
 
 //firestore
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 //contextos
 import { CartContext } from '../contexts/CartContext.jsx';
-import { useTheme } from '../contexts/ThemeContext.jsx';
+import { useTheme } from '../contexts/ThemeContext.jsx'; // Asegúrate de que useTheme esté importado correctamente
 
 //toast
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,11 +41,10 @@ const ProductosDetail = () => {
 
     const onAdd = (item) => {
         notify();
-        addCart(item, cantidad); // Pasar la cantidad al agregar al carrito
+        addCart(item, cantidad); 
         console.log('Producto agregado al carrito');
     };
 
-    // Funciones para incrementar y decrementar la cantidad
     const incrementarCantidad = () => {
         setCantidad(cantidad + 1);
     };
@@ -73,6 +73,12 @@ const ProductosDetail = () => {
 
         fetchData();
     }, [id]);
+
+    if (loading) {
+        return (
+            <Loading/>
+        )
+    }
 
     return (
         <div className={`app ${theme}`}>

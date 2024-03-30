@@ -36,7 +36,6 @@ const Cart = () => {
     notify('Agregado al carrito! 🛒');
   };
 
-
   useEffect(() => {
     setCartQuantity(cart.length);
   }, [cart]);
@@ -94,7 +93,7 @@ const Cart = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={toastTheme}
         transition:Bounce
       />
     </>
