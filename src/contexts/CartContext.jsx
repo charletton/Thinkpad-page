@@ -1,8 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
-
 export const CartProvider = ({ children }) => {
+
     //Contexto guardado en el storage
     const storedCart = localStorage.getItem("cart");
     const initialCart = storedCart ? JSON.parse(storedCart) : [];
@@ -26,9 +26,27 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+    const removeItem = (id) => {
+        if (isInCart(id)) {
+            const updatedCart = cart.map((cartItem) => {
+                if (cartItem.item.id === id) {
+                    if (cartItem.quantity === 1) {
+                        return null;
+                    } else {
+                        return { ...cartItem, quantity: cartItem.quantity - 1 };
+                    }
+                }
+                return cartItem;
+            }).filter(Boolean); 
+            setCart(updatedCart);
+        } else {
+            console.log('El producto no está en el carrito.');
+        }
+    };
+
     const clear = () => {
         setCart([]);
-        localStorage.removeItem("cart"); 
+        localStorage.removeItem("cart");
     };
 
     const isInCart = (id) => {
@@ -36,7 +54,7 @@ export const CartProvider = ({ children }) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addCart, clear }}>
+        <CartContext.Provider value={{ cart, addCart, removeItem, clear }}>
             {children}
         </CartContext.Provider>
     );

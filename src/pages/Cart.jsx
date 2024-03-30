@@ -1,28 +1,48 @@
+//hooks
 import { useEffect, useContext, useState } from "react";
-import { CartContext } from "../contexts/CartContext";
-import { CartEmpty } from "../pages/CartEmpty";
+
+//componentes
+import { CartEmpty } from "../components/CartEmpty/CartEmpty";
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
+
+//contextos
+import { CartContext } from "../contexts/CartContext";
 import { useTheme } from "../contexts/ThemeContext";
 
+//toast
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 const Cart = () => {
-  const { addCart } = useContext(CartContext);
-  const { cart, clear, removeItem, addItem } = useContext(CartContext);
+  const { addCart, cart, clear, removeItem } = useContext(CartContext);
   const [cartQuantity, setCartQuantity] = useState(0);
   const { theme, setTheme } = useTheme();
 
+  const toastTheme = theme === 'dark' ? 'dark' : 'light';
+  const notify = (text) => toast(text, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: toastTheme,
+  })
+
   const onAdd = (item) => {
     addCart(item, 1);
-    console.log('Producto agregado al carrito');
+    notify('Agregado al carrito! 🛒');
   };
 
 
-  // Actualiza cartQuantity cuando cambia el carrito
   useEffect(() => {
     setCartQuantity(cart.length);
   }, [cart]);
 
   if (cartQuantity === 0) {
+    //render condicional
     return <CartEmpty />;
   }
 
@@ -34,7 +54,7 @@ const Cart = () => {
         <h1 className={`text-6xl mt-10 font-bold text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 pb-20 -translate-y-1/2 ${theme == 'dark' ? 'text-custom-white' : 'text-custom-black'}`}>Carrito</h1>
       </div>
       <div className={` p-4 w-full h-full ${theme === 'dark' ? 'bg-black ' : 'bg-white'} flex flex-col items-center justify-center`}>
-      <button onClick={clear} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4">Limpiar Carrito</button>
+        <button onClick={clear} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4">Limpiar Carrito</button>
         {cart.map((item, index) => (
           <div key={index} className={`cart-item mb-8 p-8 rounded-lg  ${theme === 'dark' ? 'bg-black' : 'bg-white shadow-lg'}`}>
             <div className="flex items-center">
@@ -46,16 +66,37 @@ const Cart = () => {
                 <p>Cantidad: {item.quantity}</p>
                 <p>Precio unidad: ${item.item.price}</p>
                 <p>Precio total: ${item.item.price * item.quantity}</p>
+
+                {/* Agregar unidad del carrito */}
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md mt-4"
                   onClick={() => onAdd(item.item)}>Agregar otro</button>
+
+                {/* Eliminar unidad del carrito */}
                 <button className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md mt-2"
-                  onClick={() => removeItem(item.item)}>Quitar del carrito</button>
+                  onClick={() => {
+                    removeItem(item.item.id);
+                    toast('Eliminado al carrito! 🛒')
+                  }}>Quitar del carrito</button>
+
               </div>
             </div>
           </div>
         ))}
       </div>
       <Footer />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </>
   );
 };

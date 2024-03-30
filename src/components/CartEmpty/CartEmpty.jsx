@@ -1,7 +1,7 @@
-import NavBar from '../components/NavBar/NavBar';
-import Footer from '../components/Footer/Footer';
-import { useTheme } from '../contexts/ThemeContext';
-import red_cart from '../assets/red-cart.png'
+import NavBar from '../NavBar/NavBar';
+import Footer from '../Footer/Footer';
+import { useTheme } from '../../contexts/ThemeContext';
+import red_cart from '../../assets/red-cart.png';
 import { Link } from 'react-router-dom';
 
 export const CartEmpty = () => {

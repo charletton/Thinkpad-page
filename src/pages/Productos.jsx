@@ -4,7 +4,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import Footer from "../components/Footer/Footer";
 
 const Productos = () => {
-  const { theme, setTheme } = useTheme(); // Usar el contexto de tema en lugar de manejar el estado aquí
+  const { theme, setTheme } = useTheme(); 
 
   return (
     <div className={`app ${theme}`}>

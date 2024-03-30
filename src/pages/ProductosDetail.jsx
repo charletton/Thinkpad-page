@@ -1,10 +1,21 @@
+//hooks
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useTheme } from '../contexts/ThemeContext.jsx';
+
+//componentes
 import NavBar from "../components/NavBar/NavBar";
 import Footer from '../components/Footer/Footer';
+
+//firestore
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
+
+//contextos
 import { CartContext } from '../contexts/CartContext.jsx';
+import { useTheme } from '../contexts/ThemeContext.jsx';
+
+//toast
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductosDetail = () => {
     const { theme, setTheme } = useTheme();
@@ -12,10 +23,36 @@ const ProductosDetail = () => {
     const { addCart } = useContext(CartContext);
     const [producto, setProducto] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [cantidad, setCantidad] = useState(1);
+
+
+    const toastTheme = theme === 'dark' ? 'dark' : 'light';
+    const notify = () => toast('Agregado al carrito! 🛒', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: toastTheme,
+    })
 
     const onAdd = (item) => {
-        addCart(item, 1);
+        notify();
+        addCart(item, cantidad); // Pasar la cantidad al agregar al carrito
         console.log('Producto agregado al carrito');
+    };
+
+    // Funciones para incrementar y decrementar la cantidad
+    const incrementarCantidad = () => {
+        setCantidad(cantidad + 1);
+    };
+
+    const decrementarCantidad = () => {
+        if (cantidad > 1) {
+            setCantidad(cantidad - 1);
+        }
     };
 
     useEffect(() => {
@@ -37,7 +74,7 @@ const ProductosDetail = () => {
         fetchData();
     }, [id]);
 
-   return (
+    return (
         <div className={`app ${theme}`}>
             {/* navbar */}
             <NavBar theme={theme} setTheme={setTheme} />
@@ -67,8 +104,15 @@ const ProductosDetail = () => {
                                     <div className={`flex flex-col justify-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
                                         <h2 className="text-5xl font-semibold mb-4 ">{producto.nombre}</h2>
                                         <p className="text-lg mb-6">{producto.descripcion}</p>
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md"
+
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md mr-2"
                                             onClick={() => onAdd(producto)}>Agregar al carrito</button>
+                                        <div className="input-group mt-5 mb-3">
+                                            <button  onClick={incrementarCantidad}>+</button>
+                                            <input type="number" value={cantidad} readOnly id="input" />
+                                            <button  onClick={decrementarCantidad}>-</button>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -80,7 +124,21 @@ const ProductosDetail = () => {
                 )}
             </div>
             <Footer />
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition:Bounce
+            />
         </div>
-    );};
+    );
+};
 
 export default ProductosDetail;

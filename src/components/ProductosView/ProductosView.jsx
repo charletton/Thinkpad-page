@@ -1,14 +1,35 @@
+//hooks
 import React, { useState, useEffect, useContext } from 'react';
-import { useTheme } from '../../contexts/ThemeContext';
 import { Link } from 'react-router-dom';
+
+//contextos
+import { useTheme } from '../../contexts/ThemeContext';
 import { CartContext } from '../../contexts/CartContext';
-import {  getDocs, collection, getFirestore } from 'firebase/firestore';
+
+//firebase
+import { getDocs, collection, getFirestore } from 'firebase/firestore';
+
+//toast
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductosView = () => {
   const { theme } = useTheme();
+  const { addCart } = useContext(CartContext);
   const [productos, setProductos] = useState([]);
   const [filtro, setFiltro] = useState("");
-  const { addCart } = useContext(CartContext);
+
+  const toastTheme = theme === 'dark' ? 'dark' : 'light'; 
+  const notify = () => toast('Agregado al carrito! 🛒', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: toastTheme,
+  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +45,7 @@ const ProductosView = () => {
 
   const onAdd = (item) => {
     addCart(item, 1);
-    console.log('Producto agregado al carrito');
+    notify(); 
   };
 
   const handleFiltroChange = (e) => {
@@ -84,6 +105,20 @@ const ProductosView = () => {
           </div>
         ))}
       </div>
+
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </>
   );
 };
