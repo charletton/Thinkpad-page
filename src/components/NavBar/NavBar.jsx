@@ -1,10 +1,16 @@
+//css
 import './NavBar.css';
+
+//hooks + contexts
 import { useTheme } from '../../contexts/ThemeContext'; 
 import { Link } from 'react-router-dom';
-import ItemListContainer from '../ItemListContainer/ItemListContainer';
+
+//components
 import CartWidget from '../CartWidget/CartWidget';
+import ItemListContainer from '../ItemListContainer/ItemListContainer';
+
+//assets
 import logo from '../../assets/logo.png';
-import PropTypes from 'prop-types';
 import sun from '../../assets/sun.png';
 import moon from '../../assets/moon.svg';
 import cart from '../../assets/cart-light.png';

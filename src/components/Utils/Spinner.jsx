@@ -1,3 +1,4 @@
+//imports
 import { BounceLoader } from "react-spinners";
 import React from "react";
 

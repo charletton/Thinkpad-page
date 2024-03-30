@@ -1,11 +1,13 @@
-import /*React,*/ { useState } from 'react'
+//hooks
+import { useTheme } from '../contexts/ThemeContext.jsx'
+
+//components
 import NavBar from '../components/NavBar/NavBar.jsx'
 import Footer from '../components/Footer/Footer.jsx'
-import { useTheme } from '../contexts/ThemeContext.jsx'
 import Carousel from '../components/Carousel/Carousel.jsx'
 
 const Home = () => {
-  const { theme, setTheme } = useTheme(); // Usar el contexto de tema en lugar de manejar el estado aquí
+  const { theme, setTheme } = useTheme();
 
   return ( 
     <div className={`app ${theme}`}>
@@ -22,8 +24,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Carousel theme={theme}/>  
 
+      <Carousel theme={theme}/>  
       <Footer theme={theme} setTheme={setTheme}/> 
     </div>
 

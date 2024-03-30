@@ -1,4 +1,4 @@
-import React from 'react';
+//imports
 import PropTypes from 'prop-types';
 
 const AddToCartButton = ({ onClick }) => {
