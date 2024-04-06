@@ -35,7 +35,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className={`logos ${theme === 'dark' ? 'dark !important' : 'bg-white !important'}`}>
+    <div className={`logos ${theme === 'dark' ? 'dark !important' : 'bg-white'} `}>
     <div className={`logos-slide d-flex`} ref={logosRef}>
         <img src={th1} alt="ThinkPad" />
         <img src={ibm1} alt="IBM" />

@@ -14,17 +14,20 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import Loading from '../Loading/Loading';
 
+// boton BS
+import { Dropdown, ButtonGroup, Button } from 'react-bootstrap';
+
 //toast
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 const ProductosView = () => {
+  const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { addCart } = useContext(CartContext);
   const [productos, setProductos] = useState([]);
   const [filtro, setFiltro] = useState("");
   const [loading, setLoading] = useState(true);
-
 
   const toastTheme = theme === 'dark' ? 'dark' : 'light';
   const notify = () => toast('Agregado al carrito! 🛒', {
@@ -45,7 +48,7 @@ const ProductosView = () => {
       const productosSnapshot = await getDocs(productosCollection);
       const productosData = productosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setProductos(productosData);
-      setLoading(false); 
+      setLoading(false);
     };
 
     fetchData();
@@ -71,7 +74,7 @@ const ProductosView = () => {
   };
 
   if (loading) return (
-    <Loading/>
+    <Loading />
   )
 
   return (
@@ -85,22 +88,37 @@ const ProductosView = () => {
             transform -translate-x-1/2
             -translate-y-1/2 
             pb-20
+            custom_transition
             ${theme == 'dark' ? 'text-custom-white' : 'text-custom-black'}`
         }>
           Productos!
         </h1>
       </div>
 
-      <div className={`Main-body p-4 w-full h-full ${theme == 'dark' ? 'bg-dark' : 'bg-white'}`}>
+      <div className={`Main-body custom_transition p-4 w-full h-full ${theme == 'dark' ? 'bg-dark' : 'bg-white'}`}>
         <>
-          {/* input filter */}
-          <input
-            type="text"
-            placeholder="Buscar producto"
-            value={filtro}
-            onChange={handleFiltroChange}
-            className="w-full py-2 px-3 mb-4 leading-tight focus:outline-none focus:shadow-outline"
-          />
+          <div className="flex mb-4">
+            <input
+              type="text"
+              placeholder="Buscar producto"
+              value={filtro}
+              onChange={handleFiltroChange}
+              className="w-full py-2 px-3 mb-4 md:mb-0 md:mr-4 leading-tight focus:outline-none focus:shadow-outline rounded-md border border-gray-300"
+            />
+
+            <Dropdown as={ButtonGroup}>
+              <Button variant="success">Split Button</Button>
+
+              <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+
 
           {/* Filters */}
           <div className="flex mb-4">
@@ -118,7 +136,7 @@ const ProductosView = () => {
           {/* Render */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {productosFiltrados.map(producto => (
-              <div className={`max-w-md mx-auto ${theme === 'dark' ? 'bg-white' : 'bg-black'} rounded-lg overflow-hidden shadow-lg`} key={producto.id}>
+              <div className={`max-w-md mx-auto  ${theme === 'dark' ? 'bg-white' : 'bg-black'} rounded-lg overflow-hidden shadow-lg`} key={producto.id}>
                 <Link to={`/productos/${producto.id}`} className="block">
                   <img className="w-full h-auto" src={producto.img} alt={producto.nombre} />
                 </Link>

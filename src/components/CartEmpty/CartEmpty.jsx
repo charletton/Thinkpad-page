@@ -20,7 +20,7 @@ export const CartEmpty = () => {
         height: '100vh',
       }}>
         <div className={` h-screen m-0 p-0 flex flex-col items-center justify-center`}>
-          <h1 className={`text-4xl md:text-6xl mt-8 font-bold mb-8 ${theme === 'dark' ? 'text-custom-white' : 'text-custom-black'}`}>
+          <h1 className={`custom_transition text-4xl md:text-6xl mt-8 font-bold mb-8 ${theme === 'dark' ? 'text-custom-white' : 'text-custom-black'}`}>
             ¡Carrito vacío!
           </h1>
           <img src={red_cart} alt="Carrito vacío" className="w-64 md:w-96 mt-0" />

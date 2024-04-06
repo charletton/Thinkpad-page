@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    margin: 0;
-    padding: 0;
-}
 
 .invertir-color {
   filter: invert(100%);
@@ -46,10 +42,23 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3), 4px 7px 15px rgba(0, 0, 0, 0.2),
-    9px 15px 25px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   max-width: 360px;
+}
+
+.input-group-light {
+  box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3), 4px 7px 15px rgba(0, 0, 0, 0.2),
+    9px 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.input-group-dark {
+  box-shadow: 2px 3px 4px rgba(255, 255, 255, 0.3), 4px 7px 15px rgba(255, 255, 255, 0.2),
+    9px 15px 25px rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.input-group-dark input{
+  color: black;
 }
 
 button,
@@ -87,4 +96,9 @@ button:nth-last-child(1):active {
 }
 button:nth-child(1):active {
   box-shadow: inset 4px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.custom_transition {
+  transition: background-color 0.5s; 
+  transition: color 0.5s; 
 }

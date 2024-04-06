@@ -41,7 +41,7 @@ const ProductosDetail = () => {
 
     const onAdd = (item) => {
         notify();
-        addCart(item, cantidad); 
+        addCart(item, cantidad);
         console.log('Producto agregado al carrito');
     };
 
@@ -76,7 +76,7 @@ const ProductosDetail = () => {
 
     if (loading) {
         return (
-            <Loading/>
+            <Loading />
         )
     }
 
@@ -103,7 +103,7 @@ const ProductosDetail = () => {
                                 alignItems: 'center'
                             }}>
 
-                                <div className={`flex items-center mb-8 p-8 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+                                <div className={`flex items-center mb-8 p-8 rounded-lg shadow-lg  ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
                                     <div className="flex-shrink-0 w-80 h-60 mr-6">
                                         <img src={producto.img} alt={producto.nombre} className="w-full h-full object-cover rounded-lg" />
                                     </div>
@@ -111,12 +111,11 @@ const ProductosDetail = () => {
                                         <h2 className="text-5xl font-semibold mb-4 ">{producto.nombre}</h2>
                                         <p className="text-lg mb-6">{producto.descripcion}</p>
 
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md mr-2"
-                                            onClick={() => onAdd(producto)}>Agregar al carrito</button>
-                                        <div className="input-group mt-5 mb-3">
-                                            <button  onClick={incrementarCantidad}>+</button>
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md mr-2" onClick={() => onAdd(producto)}>Agregar al carrito</button>
+                                        <div className={`input-group mt-5 mb-3 ${theme === 'dark' ? 'input-group-dark' : 'input-group-light'}`}>
+                                            <button onClick={incrementarCantidad}>+</button>
                                             <input type="number" value={cantidad} readOnly id="input" />
-                                            <button  onClick={decrementarCantidad}>-</button>
+                                            <button onClick={decrementarCantidad}>-</button>
                                         </div>
 
                                     </div>
