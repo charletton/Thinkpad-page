@@ -1,6 +1,10 @@
 //hooks
 import React, { createContext, useState, useEffect } from "react";
 
+//toast
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
 
@@ -13,16 +17,37 @@ export const CartProvider = ({ children }) => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
 
-    const addCart = (item, quantity) => {
+    const isInCart = (id) => {
+        return cart.some((cartItem) => cartItem.item.id === id);
+    };
+
+    const notify = (text, toastTheme) => toast(text, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: toastTheme,
+    })
+
+
+    const addCart = (item, quantity, theme) => {
         if (isInCart(item.id)) {
             const updatedCart = cart.map((cartItem) => {
-                if (cartItem.item.id === item.id) {
+                if (cartItem.item.id === item.id && item.stock >= cartItem.quantity + quantity) {
+                    notify('Agregado al carrito! 🛒', theme);
                     return { ...cartItem, quantity: cartItem.quantity + quantity };
+                } else if (cartItem.item.id === item.id && item.stock < cartItem.quantity + quantity) {
+                    notify('No hay suficiente stock! 🛒', theme);
+                    return cartItem;
                 }
                 return cartItem;
             });
             setCart(updatedCart);
         } else {
+            notify('Agregado al carrito! 🛒', theme);
             setCart([...cart, { item, quantity }]);
         }
     };
@@ -38,20 +63,18 @@ export const CartProvider = ({ children }) => {
                     }
                 }
                 return cartItem;
-            }).filter(Boolean); 
+            }).filter(Boolean);
             setCart(updatedCart);
+            notify('Producto eliminado del carrito', 'dark'); // Mensaje de notificación al eliminar un producto
         } else {
             console.log('El producto no está en el carrito.');
         }
     };
 
+
     const clear = () => {
         setCart([]);
         localStorage.removeItem("cart");
-    };
-
-    const isInCart = (id) => {
-        return cart.some((cartItem) => cartItem.item.id === id);
     };
 
     return (

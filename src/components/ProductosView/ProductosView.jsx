@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 //contextos
 import { useTheme } from '../../contexts/ThemeContext';
 import { CartContext } from '../../contexts/CartContext';
+import { ToastContainer } from 'react-toastify';
 
 //firebase
 import { getDocs, collection, getFirestore } from 'firebase/firestore';
@@ -14,32 +15,14 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import Loading from '../Loading/Loading';
 
-// boton BS
-import { Dropdown, ButtonGroup, Button } from 'react-bootstrap';
-
-//toast
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
 
 const ProductosView = () => {
-  const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { addCart } = useContext(CartContext);
   const [productos, setProductos] = useState([]);
   const [filtro, setFiltro] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const toastTheme = theme === 'dark' ? 'dark' : 'light';
-  const notify = () => toast('Agregado al carrito! 🛒', {
-    position: "bottom-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: toastTheme,
-  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,8 +38,7 @@ const ProductosView = () => {
   }, []);
 
   const onAdd = (item) => {
-    addCart(item, 1);
-    notify();
+    addCart(item, 1, theme);
   };
 
   const handleFiltroChange = (e) => {
@@ -82,7 +64,7 @@ const ProductosView = () => {
       <NavBar theme={theme} setTheme={setTheme} />
       <div className="relative">
         <img src='https://i.pinimg.com/originals/82/a2/61/82a26119fbdad694553647323ddefdca.jpg' className="w-full h-60 object-cover object-top" alt="Imagen de productos" />
-        <h1 className={`text-6xl mt-10 
+        <div className={`text-6xl mt-10 
             font-bold text-center
             absolute top-1/2 left-1/2
             transform -translate-x-1/2
@@ -91,67 +73,58 @@ const ProductosView = () => {
             custom_transition
             ${theme == 'dark' ? 'text-custom-white' : 'text-custom-black'}`
         }>
-          Productos!
-        </h1>
+          {/* Filters */}
+          <div className="flex justify-center mb-4">
+            <div className="flex ml-auto mr-auto">
+              <button onClick={() => setFiltro("new")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                Modelos nuevos
+              </button>
+              <button onClick={() => setFiltro("old")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mr-2">
+                Modelos antiguos
+              </button>
+              <button onClick={limpiarFiltro} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 mr-5">
+                Limpiar
+              </button>
+              <input
+                type="text"
+                placeholder="Buscar producto"
+                value={filtro}
+                onChange={handleFiltroChange}
+                className="py-2 px-3 mb-4 md:mb-0 md:mr-4 leading-tight focus:outline-none focus:shadow-outline rounded-md border border-gray-300"
+              />
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <div className={`Main-body custom_transition p-4 w-full h-full ${theme == 'dark' ? 'bg-dark' : 'bg-white'}`}>
         <>
           <div className="flex mb-4">
-            <input
-              type="text"
-              placeholder="Buscar producto"
-              value={filtro}
-              onChange={handleFiltroChange}
-              className="w-full py-2 px-3 mb-4 md:mb-0 md:mr-4 leading-tight focus:outline-none focus:shadow-outline rounded-md border border-gray-300"
-            />
-
-            <Dropdown as={ButtonGroup}>
-              <Button variant="success">Split Button</Button>
-
-              <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
           </div>
 
-
-          {/* Filters */}
-          <div className="flex mb-4">
-            <button onClick={() => setFiltro("new")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-              Nuevos
-            </button>
-            <button onClick={() => setFiltro("old")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-              Viejos
-            </button>
-            <button onClick={limpiarFiltro} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-              Limpiar
-            </button>
-          </div>
 
           {/* Render */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 
+          lg:grid-cols-4 lg:ml-32 lg:mr-32 gap-4 justify-center">
             {productosFiltrados.map(producto => (
-              <div className={`max-w-md mx-auto  ${theme === 'dark' ? 'bg-white' : 'bg-black'} rounded-lg overflow-hidden shadow-lg`} key={producto.id}>
-                <Link to={`/productos/${producto.id}`} className="block">
-                  <img className="w-full h-auto" src={producto.img} alt={producto.nombre} />
-                </Link>
-                <div className="px-6 py-4">
-                  <div className={`font-bold text-xl mb-2 ${theme === 'dark' ? 'text-dark' : 'text-white'}`}>{producto.nombre}</div>
-                  <p className="text-gray-700 text-base">
-                    {producto.descripcion}
-                  </p>
-                </div>
-                <div className="px-6 pt-0 pb-2">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => onAdd(producto)}>Agregar al carrito</button>
+              <div className="max-w-md mx-auto" key={producto.id}>
+                <div className={`max-w-md mx-auto ${theme === 'dark' ? 'bg-white' : 'bg-black'} rounded-lg overflow-hidden shadow-lg`}>
+                  <Link to={`/productos/${producto.id}`} className="block">
+                    <img className="w-full object-cover h-auto" src={producto.img} alt={producto.nombre} style={{ height: '350px' }} />
+                  </Link>
+                  <div className="px-6 py-4">
+                    <div className={`font-bold text-xl mb-2 ${theme === 'dark' ? 'text-dark' : 'text-white'}`}>{producto.nombre}</div>
+                  </div>
+                  <div className="px-6 pt-0 pb-2">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" onClick={() => onAdd(producto)}>Agregar al carrito</button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
 
           <ToastContainer
             position="bottom-center"
@@ -163,7 +136,7 @@ const ProductosView = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="light"
+            theme={theme}
             transition:Bounce
           />
         </>

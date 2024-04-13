@@ -14,9 +14,9 @@ import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import { CartContext } from '../contexts/CartContext.jsx';
 import { useTheme } from '../contexts/ThemeContext.jsx'; // Asegúrate de que useTheme esté importado correctamente
 
-//toast
+//toas
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 const ProductosDetail = () => {
     const { theme, setTheme } = useTheme();
@@ -27,22 +27,8 @@ const ProductosDetail = () => {
     const [cantidad, setCantidad] = useState(1);
 
 
-    const toastTheme = theme === 'dark' ? 'dark' : 'light';
-    const notify = () => toast('Agregado al carrito! 🛒', {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: toastTheme,
-    })
-
     const onAdd = (item) => {
-        notify();
-        addCart(item, cantidad);
-        console.log('Producto agregado al carrito');
+        addCart(item, cantidad, theme);
     };
 
     const incrementarCantidad = () => {
