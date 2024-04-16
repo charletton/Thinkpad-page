@@ -1,3 +1,4 @@
+//hooks
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Contexts
@@ -10,16 +11,16 @@ import Home from './pages/Home';
 import Productos from './pages/Productos';
 import ProductosDetail from './pages/ProductosDetail';
 import NotFound from './pages/NotFound.jsx';
-import Checkout from './pages/Checkout.jsx';
+import Checkout from './components/Checkout/Checkout.jsx';
 
-function App() {
+function App({collectionRef}) {
   return (
     <CartProvider>
       <ThemeProvider>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart collectionRef={collectionRef}/>} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/productos/:id" element={<ProductosDetail />} />
             <Route path="/checkout" element={<Checkout />} />
