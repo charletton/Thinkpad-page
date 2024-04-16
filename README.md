@@ -11,4 +11,4 @@ Tecnologias utilizadas en el proyecto
 - Tailwind CSS
 - React-router
 ## Demo
-![[./src/git/demo.gif]]
+![Demo](/src/git/demo.gif)
