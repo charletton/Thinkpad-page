@@ -135,7 +135,7 @@ const Cart = ({ collectionRef }) => {
               </div>
               <div className="mb-4">
                 <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'} `}>Correo Electrónico</label>
-                <input type="email" id="email" name="email" className="mt-1 p-2 w-full rounded-md bg-black shadow" />
+                <input type="email" id="email" name="email" className="mt-1 p-2 w-full rounded-md shadow" />
               </div>
 
               <button
