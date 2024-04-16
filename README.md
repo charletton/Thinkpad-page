@@ -10,4 +10,5 @@ Tecnologias utilizadas en el proyecto
 - Toastify - react
 - Tailwind CSS
 - React-router
-## Pages
+## Demo
+![[./src/git/demo.gif]]
