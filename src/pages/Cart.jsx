@@ -122,7 +122,7 @@ const Cart = ({ collectionRef }) => {
 
           <div className={`p-4 relative ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
             <form>
-              <div className="mb-4">
+              <div className="margin-custom">
                 <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">Nombre</label>
                 <input type="text" id="nombre" name="nombre" className="mt-1 p-2 w-full border-gray-300 rounded-md" />
               </div>

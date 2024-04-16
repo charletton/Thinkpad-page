@@ -31,8 +31,10 @@ const ProductosDetail = () => {
         addCart(item, cantidad, theme);
     };
 
-    const incrementarCantidad = () => {
-        setCantidad(cantidad + 1);
+    const incrementarCantidad = (producto) => {
+        if (producto.stock > cantidad){
+            setCantidad(cantidad + 1);
+        }
     };
 
     const decrementarCantidad = () => {
@@ -99,7 +101,7 @@ const ProductosDetail = () => {
 
                                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md mr-2" onClick={() => onAdd(producto)}>Agregar al carrito</button>
                                         <div className={`input-group mt-5 mb-3 ${theme === 'dark' ? 'input-group-dark' : 'input-group-light'}`}>
-                                            <button onClick={incrementarCantidad}>+</button>
+                                            <button onClick={() => incrementarCantidad(producto)}>+</button>
                                             <input type="number" value={cantidad} readOnly id="input" />
                                             <button onClick={decrementarCantidad}>-</button>
                                         </div>

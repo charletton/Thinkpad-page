@@ -10,3 +10,4 @@ Tecnologias utilizadas en el proyecto
 - Toastify - react
 - Tailwind CSS
 - React-router
+## Pages
