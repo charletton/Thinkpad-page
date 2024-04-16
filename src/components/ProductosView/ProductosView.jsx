@@ -60,7 +60,7 @@ const ProductosView = () => {
   )
 
   return (
-    <div className={`app ${theme} custom_transition`}>
+    <div className={`app ${theme} `}>
       <NavBar theme={theme} setTheme={setTheme} />
       <div className="relative ">
         <img src='https://i.pinimg.com/originals/82/a2/61/82a26119fbdad694553647323ddefdca.jpg' className="w-full h-60 object-cover object-top" alt="Imagen de productos" />
@@ -107,15 +107,22 @@ const ProductosView = () => {
           {/* Render */}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 
-          lg:grid-cols-4 lg:ml-32 lg:mr-32 gap-4 justify-center">
+          lg:grid-cols-4 lg:ml-32 lg:mr-32 gap-4 justify-center  ">
             {productosFiltrados.map(producto => (
-              <div className="max-w-md mx-auto" key={producto.id}>
-                <div className={`max-w-md mx-auto ${theme === 'dark' ? 'bg-white' : 'bg-black'} rounded-lg overflow-hidden shadow-lg`}>
+              <div className="max-w-md " key={producto.id}>
+                <div className={`max-w-md ${theme === 'dark' ? 'bg-white' : 'bg-gray-900'}  overflow-hidden border rounded-lg`}
+                  style={{
+                    backgroundImage: `url('https://i.pinimg.com/originals/82/a2/61/82a26119fbdad694553647323ddefdca.jpg')`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    overflow: 'hidden',
+                    backgroundPosition: 'center',
+                  }}>
                   <Link to={`/productos/${producto.id}`} className="block">
                     <img className="w-full object-cover h-auto" src={producto.img} alt={producto.nombre} style={{ height: '350px' }} />
                   </Link>
                   <div className="px-6 py-4">
-                    <div className={`font-bold text-xl mb-2 ${theme === 'dark' ? 'text-dark' : 'text-white'}`}>{producto.nombre}</div>
+                    <div className={`font-bold text-xl mb-2 text-white`}>{producto.nombre}</div>
                   </div>
                   <div className="px-6 pt-0 pb-2">
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" onClick={() => onAdd(producto)}>Agregar al carrito</button>
