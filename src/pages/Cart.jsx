@@ -104,7 +104,7 @@ const Cart = ({ collectionRef }) => {
                 <div key={index} className={`cart-item mb-8 p-8 rounded-lg ${theme === 'dark' ? 'bg-black' : 'bg-white shadow-lg'}`}>
                   <div className="flex items-center">
                     <div className="flex-shrink-0 w-80 h-60 mr-6">
-                      <img src={item.item.img} alt={item.item.nombre} className="w-full h-full object-cover rounded-lg" />
+                      <img src={item.item.img} alt={item.item.nombre} className="w-full h-full object-cover rounded-lg " />
                     </div>
                     <div className={`flex flex-col justify-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
                       <h2 className="text-5xl font-semibold mb-4">{item.item.nombre}</h2>
@@ -122,16 +122,16 @@ const Cart = ({ collectionRef }) => {
 
           <div className={`p-4 relative ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
             <form>
-              <div className="margin-custom">
-                <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">Nombre</label>
+              <div className={`margin-custom `}>
+                <label htmlFor="nombre" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>Nombre</label>
                 <input type="text" id="nombre" name="nombre" className="mt-1 p-2 w-full border-gray-300 rounded-md" />
               </div>
-              <div className="mb-4">
-                <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">Apellido</label>
+              <div className="mt-2 mb-2">
+                <label htmlFor="apellido" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>Apellido</label>
                 <input type="text" id="apellido" name="apellido" className="mt-1 p-2 w-full border-gray-300 rounded-md" />
               </div>
               <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>Correo Electrónico</label>
                 <input type="email" id="email" name="email" className="mt-1 p-2 w-full border-gray-300 rounded-md" />
               </div>
 
