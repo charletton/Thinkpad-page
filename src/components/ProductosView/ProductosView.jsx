@@ -60,9 +60,9 @@ const ProductosView = () => {
   )
 
   return (
-    <div className={`app ${theme}`}>
+    <div className={`app ${theme} custom_transition`}>
       <NavBar theme={theme} setTheme={setTheme} />
-      <div className="relative">
+      <div className="relative ">
         <img src='https://i.pinimg.com/originals/82/a2/61/82a26119fbdad694553647323ddefdca.jpg' className="w-full h-60 object-cover object-top" alt="Imagen de productos" />
         <div className={`text-6xl mt-10 
             font-bold text-center
@@ -71,7 +71,7 @@ const ProductosView = () => {
             -translate-y-1/2 
             pb-20
             custom_transition
-            ${theme == 'dark' ? 'text-custom-white' : 'text-custom-black'}`
+            `
         }>
           {/* Filters */}
           <div className="flex justify-center mb-4">
@@ -86,11 +86,11 @@ const ProductosView = () => {
                 Limpiar
               </button>
               <input
+                className={`py-2 px-3 mb-4 md:mb-0 md:mr-4 leading-tight focus:outline-none focus:shadow-outline rounded-md border text-dark`}
                 type="text"
                 placeholder="Buscar producto"
                 value={filtro}
                 onChange={handleFiltroChange}
-                className="py-2 px-3 mb-4 md:mb-0 md:mr-4 leading-tight focus:outline-none focus:shadow-outline rounded-md border border-gray-300"
               />
             </div>
           </div>

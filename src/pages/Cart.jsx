@@ -96,8 +96,10 @@ const Cart = ({ collectionRef }) => {
     return (
       <>
         <NavBar theme={theme} setTheme={setTheme} />
-        <div className="grid grid-cols-2 ">
-          <div className={`relative ${theme === 'dark' ? 'bg-black' : 'bg-white'} overflow-y-auto max-h-screen md:max-h-70vh custom_transition`}>
+        <div className="grid  grid-cols-2 h-custom ">
+
+          {/* main body -> grilla de productos en carrito */}
+          <div className={`relative ${theme === 'dark' ? 'bg-black' : 'bg-white'} overflow-y-auto max-h-custom md:max-h-70vh `}>
             <h1 className={`text-6xl mt-10 font-bold text-center ${theme == 'dark' ? 'text-custom-white' : 'text-custom-black'}`}>Carrito</h1>
             <div className="p-4">
               {cart.map((item, index) => (
@@ -120,19 +122,20 @@ const Cart = ({ collectionRef }) => {
             </div>
           </div>
 
+        {/*  -> grilla de detalles */}
           <div className={`p-4 relative ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
             <form>
               <div className={`margin-custom `}>
                 <label htmlFor="nombre" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>Nombre</label>
-                <input type="text" id="nombre" name="nombre" className="mt-1 p-2 w-full border-gray-300 rounded-md" />
+                <input type="text" id="nombre" name="nombre" className={`mt-1 p-2 w-full  rounded-md ${theme == 'light' ? 'border-black !important' : 'color-black'} shadow`} />
               </div>
               <div className="mt-2 mb-2">
                 <label htmlFor="apellido" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>Apellido</label>
-                <input type="text" id="apellido" name="apellido" className="mt-1 p-2 w-full border-gray-300 rounded-md" />
+                <input type="text" id="apellido" name="apellido" className="mt-1 p-2 w-full  rounded-md shadow " />
               </div>
               <div className="mb-4">
-                <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>Correo Electrónico</label>
-                <input type="email" id="email" name="email" className="mt-1 p-2 w-full border-gray-300 rounded-md" />
+                <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-dark'} `}>Correo Electrónico</label>
+                <input type="email" id="email" name="email" className="mt-1 p-2 w-full rounded-md shadow" />
               </div>
 
               <button
@@ -147,9 +150,8 @@ const Cart = ({ collectionRef }) => {
             </form>
           </div>
 
-
-
         </div >
+
         <Footer />
         <ToastContainer
           position="bottom-center"

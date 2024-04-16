@@ -5,7 +5,7 @@ const Footer = () => {
   const { theme } = useTheme();
 
   return (
-    <footer className={`p-4 ${theme}`}>
+    <footer className={`p-4 ${theme} custom_transition`}>
       <div className="container mx-auto">
         <p className={`text-center ${theme == 'dark' ? 'text-white' : ''}`}>&copy; 2024 Thinkpad Store. Todos los derechos reservados.</p>
       </div>
